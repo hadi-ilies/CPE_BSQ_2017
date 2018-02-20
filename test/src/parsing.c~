@@ -1,0 +1,57 @@
+/*
+** EPITECH PROJECT, 2017
+** test
+** File description:
+** test
+*/
+
+#include <stdlib.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <string.h>
+#include <stddef.h>
+#include "my.h"
+
+void condition(square *coor)
+{
+	int temp = 0;
+
+	if (coor->row > 1 && coor->col == 1) {
+		for (int i = 0; i < coor->row; i++) {
+			if (coor->array[i][0] == '.' && temp == 0) {
+				write(1, "x\n", 2);
+				temp++;
+			} else {
+				write(1, coor->array[i], 2);
+				write(1, "\n", 1);
+			}
+		}
+		exit(0);
+	}
+}
+
+void condition_next(square *coor)
+{
+	int temp = 0;
+
+	if (coor->row == 1 && coor->col >= 1) {
+		for (int j = 0; j < coor->col; j++) {
+			if (coor->col == 1 && coor->array[0][0] == '.') {
+				write(1, "x\n", 2);
+				exit(0);
+			} if (coor->col == 1 && coor->array[0][0] == 'o') {
+				write(1, "o\n", 2);
+				exit(0);
+			} if (coor->array[0][j] == '.' && temp == 0) {
+				write(1, "x", 1);
+				temp++;
+			} else
+				my_putchar(coor->array[0][j]);
+		}
+		write(1, "\n", 1);
+		exit(0);
+	}
+}
